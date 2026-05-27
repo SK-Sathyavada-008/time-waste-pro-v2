@@ -1,0 +1,210 @@
+.fox-root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: background 3s ease;
+  font-family: 'Georgia', serif;
+}
+
+/* ── sky gradients per time of day ─────────────────── */
+.fox-root.day {
+  background: linear-gradient(180deg, #87CEEB 0%, #b8e0ff 50%, #d4f5d4 100%);
+}
+.fox-root.sunset {
+  background: linear-gradient(180deg, #FF6B35 0%, #F7931E 30%, #FFD700 60%, #FF69B4 100%);
+}
+.fox-root.night {
+  background: linear-gradient(180deg, #0a0a2e 0%, #1a1a4e 50%, #2d1b69 100%);
+}
+
+/* ground strip */
+.fox-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  border-radius: 60% 60% 0 0 / 20% 20% 0 0;
+  transition: background 3s ease;
+}
+.fox-root.day    .fox-ground { background: linear-gradient(180deg, #7ec850, #5a9e3a); }
+.fox-root.sunset .fox-ground { background: linear-gradient(180deg, #c8864a, #8b5e3c); }
+.fox-root.night  .fox-ground { background: linear-gradient(180deg, #1e3a1e, #0f1f0f); }
+
+/* sun / moon */
+.fox-celestial {
+  position: absolute;
+  border-radius: 50%;
+  transition: all 3s ease;
+}
+.fox-root.day    .fox-celestial { width: 70px; height: 70px; background: #FFD700; top: 12%; right: 18%; box-shadow: 0 0 40px #FFD70088; }
+.fox-root.sunset .fox-celestial { width: 80px; height: 80px; background: #FF6B35; top: 30%; right: 8%;  box-shadow: 0 0 60px #FF6B3588; }
+.fox-root.night  .fox-celestial { width: 50px; height: 50px; background: #fffbe6; top: 10%; right: 20%; box-shadow: 0 0 30px #fffbe688; }
+
+/* stars — only at night */
+.fox-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+.fox-root.night .fox-stars { opacity: 1; }
+
+.fox-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; transform: scale(1);   }
+  to   { opacity: 1;   transform: scale(1.5); }
+}
+
+/* clouds — day only */
+.fox-cloud {
+  position: absolute;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50px;
+  opacity: 0;
+  transition: opacity 2s ease;
+  pointer-events: none;
+}
+.fox-cloud::before, .fox-cloud::after {
+  content: '';
+  position: absolute;
+  background: rgba(255,255,255,0.85);
+  border-radius: 50%;
+}
+.fox-cloud::before { width: 60%; height: 120%; top: -40%; left: 15%; }
+.fox-cloud::after  { width: 45%; height: 100%; top: -30%; right: 10%; }
+.fox-root.day .fox-cloud { opacity: 1; }
+
+/* ── fox scene container ────────────────────────────── */
+.fox-scene {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 8%;
+}
+
+/* the big fox emoji */
+.fox-emoji {
+  font-size: 8rem;
+  line-height: 1;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.fox-scene:hover .fox-emoji { transform: scale(1.06); }
+
+/* blink overlay — eyes closed */
+.fox-emoji.blinking { animation: blink 0.18s ease; }
+@keyframes blink {
+  0%,100% { filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2)); }
+  50%      { filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2)) brightness(0.92); }
+}
+
+/* sleeping zzz */
+.fox-zzz {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 1.4rem;
+  animation: floatZzz 2s ease-in-out infinite;
+}
+@keyframes floatZzz {
+  0%,100% { transform: translate(0,0); opacity: 1; }
+  50%      { transform: translate(4px,-8px); opacity: 0.6; }
+}
+
+/* tail wag — slight rotation */
+.fox-emoji.wagging { animation: wag 0.6s ease infinite; }
+@keyframes wag {
+  0%,100% { transform: rotate(0deg);   }
+  25%      { transform: rotate(-5deg); }
+  75%      { transform: rotate(5deg);  }
+}
+
+/* reaction speech bubble */
+.fox-bubble {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  color: #333;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  animation: bubblePop 0.25s ease;
+  z-index: 10;
+}
+.fox-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: white;
+  border-bottom: none;
+}
+@keyframes bubblePop {
+  from { transform: translateX(-50%) scale(0.8); opacity: 0; }
+  to   { transform: translateX(-50%) scale(1);   opacity: 1; }
+}
+
+/* time of day toggle buttons */
+.fox-time-btns {
+  position: absolute;
+  bottom: 32px;
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.fox-time-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 2px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+.fox-time-btn:hover,
+.fox-time-btn.active {
+  background: rgba(255,255,255,0.4);
+  border-color: rgba(255,255,255,0.8);
+}
+
+/* hint text */
+.fox-hint {
+  position: absolute;
+  bottom: 80px;
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 10;
+}

@@ -1,0 +1,103 @@
+.cat-root {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffecd2);
+  overflow: hidden;
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* top bar */
+.cat-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+.cat-hud-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #c0392b;
+  letter-spacing: 2px;
+}
+
+.cat-hud-count {
+  font-size: 0.78rem;
+  color: rgba(0,0,0,0.4);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cat-spawn-btn {
+  padding: 8px 20px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 4px 16px rgba(231,76,60,0.35);
+}
+
+.cat-spawn-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(231,76,60,0.5);
+}
+
+/* each cat wrapper */
+.cat-entity {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+/* the cat emoji */
+.cat-face {
+  font-size: 2.6rem;
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+  transition: transform 0.05s;
+}
+
+/* sound effect text */
+.cat-sfx {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #c0392b;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: sfxPop 0.6s ease forwards;
+}
+
+@keyframes sfxPop {
+  0%   { opacity: 0; transform: translateY(0)    scale(0.8); }
+  30%  { opacity: 1; transform: translateY(-8px)  scale(1.1); }
+  70%  { opacity: 1; transform: translateY(-14px) scale(1);   }
+  100% { opacity: 0; transform: translateY(-20px) scale(0.9); }
+}
+
+/* background decorations */
+.cat-bg-deco {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+  pointer-events: none;
+}
