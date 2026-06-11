@@ -1,0 +1,228 @@
+.cap-root {
+  width: 100vw;
+  min-height: 100vh;
+  background: #f0f2f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial', sans-serif;
+  padding: 40px 20px;
+  position: relative;
+}
+
+/* fake google recaptcha card */
+.cap-card {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden;
+  border: 1px solid #dadce0;
+}
+
+.cap-card-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.cap-prompt {
+  font-size: 1rem;
+  color: #202124;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.cap-sub {
+  font-size: 0.75rem;
+  color: #70757a;
+}
+
+/* image grid */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 3px;
+  background: #dadce0;
+}
+
+.cap-grid.four-col {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cap-tile {
+  aspect-ratio: 1;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  background: #e8eaed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  transition: filter 0.15s;
+}
+
+.cap-tile:hover { filter: brightness(0.88); }
+
+.cap-tile.selected::after {
+  content: '✓';
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 115, 232, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: white;
+  font-weight: 900;
+}
+
+/* footer */
+.cap-footer {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f0f0f0;
+}
+
+.cap-logo {
+  font-size: 0.6rem;
+  color: #bdc1c6;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
+
+.cap-logo span {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #dadce0;
+}
+
+.cap-verify-btn {
+  padding: 10px 24px;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.cap-verify-btn:hover {
+  background: #1557b0;
+  box-shadow: 0 2px 8px rgba(26,115,232,0.4);
+}
+
+/* result overlay */
+.cap-result {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.cap-result-box {
+  background: white;
+  border-radius: 8px;
+  padding: 32px 40px;
+  text-align: center;
+  max-width: 340px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  animation: popUp 0.25s ease;
+}
+
+@keyframes popUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.cap-result-icon { font-size: 3rem; margin-bottom: 12px; }
+
+.cap-result-box h3 {
+  font-size: 1.1rem;
+  color: #d93025;
+  margin-bottom: 8px;
+}
+
+.cap-result-box p {
+  font-size: 0.82rem;
+  color: #70757a;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.cap-try-btn {
+  padding: 10px 28px;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cap-try-btn:hover { background: #1557b0; }
+
+/* attempt counter */
+.cap-attempts {
+  margin-top: 20px;
+  font-size: 0.7rem;
+  color: #aaa;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* text captcha variant */
+.cap-text-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+  margin: 12px 0 4px;
+  letter-spacing: 2px;
+  box-sizing: border-box;
+}
+
+.cap-text-input:focus { border-color: #1a73e8; }
+
+.cap-distorted {
+  font-family: 'Courier New', monospace;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #202124;
+  letter-spacing: 8px;
+  padding: 16px;
+  background: repeating-linear-gradient(
+    45deg,
+    #f8f9fa,
+    #f8f9fa 4px,
+    #e8eaed 4px,
+    #e8eaed 8px
+  );
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: line-through;
+  filter: blur(0.4px);
+  user-select: none;
+}

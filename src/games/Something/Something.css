@@ -1,0 +1,70 @@
+.some-root {
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  cursor: default;
+}
+
+/* the word "something" */
+.some-word {
+  font-family: 'Georgia', serif;
+  font-size: 2.4rem;
+  color: #111;
+  letter-spacing: 6px;
+  opacity: 0;
+  animation: someAppear 2.4s ease forwards;
+  user-select: none;
+}
+
+@keyframes someAppear {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* tiny wandering dot */
+.some-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ddd;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: left 2s ease, top 2s ease;
+}
+
+/* loading text */
+.some-loading {
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-size: 0.65rem;
+  color: #ccc;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  pointer-events: none;
+  animation: loadFade 1.8s ease forwards;
+}
+
+@keyframes loadFade {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* tiny beep text */
+.some-beep {
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-size: 0.55rem;
+  color: #e0e0e0;
+  letter-spacing: 3px;
+  pointer-events: none;
+  animation: loadFade 1.2s ease forwards;
+}

@@ -1,0 +1,98 @@
+.polka-root {
+  width: 100vw;
+  height: 100vh;
+  background: #0d0d0d;
+  overflow: hidden;
+  position: relative;
+  cursor: none;
+  font-family: 'Courier New', monospace;
+}
+
+/* score display */
+.polka-hud {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 10;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.polka-hud .score-val {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fff;
+  display: block;
+  line-height: 1;
+}
+
+/* every circle on screen */
+.polka-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+/* game over overlay */
+.polka-over {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.82);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 20;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.polka-over h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #e74c3c;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.polka-over p {
+  color: rgba(255,255,255,0.6);
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.polka-over .final-score {
+  font-size: 1.4rem;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.polka-restart {
+  margin-top: 10px;
+  padding: 14px 40px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 6px 24px rgba(231,76,60,0.45);
+}
+
+.polka-restart:hover {
+  transform: scale(1.06);
+  box-shadow: 0 10px 32px rgba(231,76,60,0.65);
+}
