@@ -113,7 +113,19 @@ export default function DumbGame() {
       onTouchEnd={handleUp}
     >
       <p className="dumb-title">World's Dumbest Game</p>
-      <h2>World Record is 40 hours</h2>
+      <h2
+  style={{
+    color: "#ffd700",
+    fontSize: "1.8rem",
+    fontWeight: "bold",
+    textAlign: "center",
+    margin: "10px 0 20px",
+    position: "relative",
+    zIndex: 10
+  }}
+>
+  World Record is 40 hours
+</h2>
       {/* timer */}
       <div className={`dumb-timer ${isHot ? 'hot' : ''}`}>
         {seconds}s
